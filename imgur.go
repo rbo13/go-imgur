@@ -25,10 +25,10 @@ func New(apiKey string) *Imgur {
 }
 
 // Upload uploads an image to imgur.
-func (imgr *Imgur) Upload(filename string) {
+func (imgr *Imgur) Upload(filename string) (*http.Response, error) {
 	fileEncoded, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return
+		return nil, err
 	}
 
 	parameters := url.Values{"image": {base64.StdEncoding.EncodeToString(fileEncoded)}}
@@ -36,13 +36,13 @@ func (imgr *Imgur) Upload(filename string) {
 
 	req, err := http.NewRequest("POST", imgurUploadURL, strings.NewReader(parameters.Encode()))
 	if err != nil {
-		return
+		return nil, err
 	}
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Authorization", "Client-ID "+imgr.apiKey)
 
-	client.Do(req)
+	return client.Do(req)
 }
 
 func client(apiKey string) *http.Client {
