@@ -2,7 +2,7 @@
 > A library that upload images to imgur. Some command-line utility is included.
 
 # Installation:
-```go
+```sh
 $ go get -u github.com/rbo13/go-imgur
 ```
 
