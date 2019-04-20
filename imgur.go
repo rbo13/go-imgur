@@ -52,6 +52,7 @@ func (imgr *Imgur) Upload(filename string) (*http.Response, error) {
 	}
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("User-Agent", "https://github.com/rbo13/go-imgur")
 	req.Header.Set("Authorization", "Client-ID "+imgr.apiKey)
 
 	return imgr.client.Do(req)
