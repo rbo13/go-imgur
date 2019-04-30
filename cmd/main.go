@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/rbo13/go-imgur/cmd/imgurmain"
+)
 
 func main() {
-	fmt.Println("vim-go")
+	imgurmain.Run()
 }
