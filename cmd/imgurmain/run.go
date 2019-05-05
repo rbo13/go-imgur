@@ -13,5 +13,9 @@ func Run() {
 	fileName := os.Args[1]
 
 	imgur := imgur.New(imgurClientID)
-	imgur.Upload(fileName)
+	res, err := imgur.Upload(fileName)
+	if err != nil {
+		panic(err)
+	}
+	print(res)
 }
