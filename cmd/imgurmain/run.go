@@ -17,5 +17,5 @@ func Run() {
 	if err != nil {
 		panic(err)
 	}
-	print(res)
+	print(res.Status)
 }
