@@ -15,8 +15,7 @@ func Run() {
 	imgur := imgur.New(imgurClientID)
 	res, err := imgur.Upload(fileName)
 	if err != nil {
-		print(err)
-		return
+		panic(err)
 	}
 
 	print(res.Status)
