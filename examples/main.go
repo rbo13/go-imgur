@@ -1,7 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
+	"log"
 	"os"
 
 	imgur "github.com/rbo13/go-imgur"
@@ -16,7 +17,13 @@ func main() {
 	imgr := imgur.New(imgurClientID)
 	res, err := imgr.Upload("./examples/4k.jpg")
 
-	fmt.Println("Uploaded")
-	fmt.Println(res)
-	fmt.Println(err)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	imgRes := imgur.Response{}
+	json.NewDecoder(res.Body).Decode(&imgRes)
+
+	print(imgRes.Data.Link)
 }
