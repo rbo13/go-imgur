@@ -25,5 +25,5 @@ func Run() {
 		panic(err)
 	}
 
-	print(imgr.GetImageLink(res))
+	print(res.GetImageLink())
 }
