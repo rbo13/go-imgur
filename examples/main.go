@@ -21,5 +21,5 @@ func main() {
 		return
 	}
 
-	print(res.Data.Link)
+	print(imgr.GetImageLink(res))
 }
