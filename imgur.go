@@ -66,8 +66,3 @@ func (imgr *Imgur) Upload(filename string) (*Response, error) {
 
 	return img, nil
 }
-
-// GetImageLink returns the link of the uploaded image from imgur.
-func (imgr *Imgur) GetImageLink(resp *Response) string {
-	return resp.Data.Link
-}
