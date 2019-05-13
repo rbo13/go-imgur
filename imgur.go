@@ -2,6 +2,7 @@ package imgur
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -14,8 +15,9 @@ const imgurUploadURL = "https://api.imgur.com/3/image"
 
 // Imgur sets the field for the required fields when uploading images to imgur.
 type Imgur struct {
-	apiKey string
-	client *http.Client
+	apiKey   string
+	client   *http.Client
+	response *Response
 }
 
 // New returns pointer to imgur
@@ -34,11 +36,12 @@ func New(apiKey string) *Imgur {
 			Timeout:   time.Second * 10,
 			Transport: netTransport,
 		},
+		response: &Response{},
 	}
 }
 
 // Upload uploads an image to imgur.
-func (imgr *Imgur) Upload(filename string) (*http.Response, error) {
+func (imgr *Imgur) Upload(filename string) (*Response, error) {
 	fileEncoded, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
@@ -55,5 +58,11 @@ func (imgr *Imgur) Upload(filename string) (*http.Response, error) {
 	req.Header.Set("User-Agent", "https://github.com/rbo13/go-imgur")
 	req.Header.Set("Authorization", "Client-ID "+imgr.apiKey)
 
-	return imgr.client.Do(req)
+	res, err := imgr.client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	json.NewDecoder(res.Body).Decode(&imgr.response)
+	return imgr.response, nil
 }
