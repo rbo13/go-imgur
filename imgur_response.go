@@ -27,3 +27,14 @@ type ImageData struct {
 	Views      int    `json:"views"`
 	Width      int    `json:"width"`
 }
+
+// GetImageLink returns the url of the uploaded image from imgur.
+func (res *Response) GetImageLink() string {
+	return res.Data.Link
+}
+
+// Clipboard copies the link to your clipboard.
+// TODO:: implement this;
+func (res *Response) Clipboard() error {
+	return nil
+}

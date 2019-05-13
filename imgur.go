@@ -15,9 +15,8 @@ const imgurUploadURL = "https://api.imgur.com/3/image"
 
 // Imgur sets the field for the required fields when uploading images to imgur.
 type Imgur struct {
-	apiKey   string
-	client   *http.Client
-	response *Response
+	apiKey string
+	client *http.Client
 }
 
 // New returns pointer to imgur
@@ -36,7 +35,6 @@ func New(apiKey string) *Imgur {
 			Timeout:   time.Second * 10,
 			Transport: netTransport,
 		},
-		response: &Response{},
 	}
 }
 
@@ -63,6 +61,8 @@ func (imgr *Imgur) Upload(filename string) (*Response, error) {
 		return nil, err
 	}
 
-	json.NewDecoder(res.Body).Decode(&imgr.response)
-	return imgr.response, nil
+	img := &Response{}
+	json.NewDecoder(res.Body).Decode(img)
+
+	return img, nil
 }
