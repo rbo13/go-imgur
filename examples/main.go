@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"os"
 
@@ -22,8 +21,5 @@ func main() {
 		return
 	}
 
-	imgRes := imgur.Response{}
-	json.NewDecoder(res.Body).Decode(&imgRes)
-
-	print(imgRes.Data.Link)
+	print(res.Data.Link)
 }
