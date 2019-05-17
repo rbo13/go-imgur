@@ -22,4 +22,5 @@ func main() {
 	}
 
 	print(res.GetImageLink())
+	// res.Clipboard()
 }
