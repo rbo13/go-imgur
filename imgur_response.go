@@ -1,5 +1,7 @@
 package imgur
 
+import "os/exec"
+
 // Response is the data given from imgur API.
 type Response struct {
 	Data    ImageData `json:"data"`
@@ -34,7 +36,25 @@ func (res *Response) GetImageLink() string {
 }
 
 // Clipboard copies the link to your clipboard.
-// TODO:: implement this;
 func (res *Response) Clipboard() error {
-	return nil
+	return copyToClipboard(res.Data.Link)
+}
+
+func copyToClipboard(text string) error {
+	copyCmd := exec.Command("pbcopy")
+	in, err := copyCmd.StdinPipe()
+	if err != nil {
+		return err
+	}
+
+	if err := copyCmd.Start(); err != nil {
+		return err
+	}
+	if _, err := in.Write([]byte(text)); err != nil {
+		return err
+	}
+	if err := in.Close(); err != nil {
+		return err
+	}
+	return copyCmd.Wait()
 }
