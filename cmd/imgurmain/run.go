@@ -26,4 +26,5 @@ func Run() {
 	}
 
 	print(res.GetImageLink())
+	// res.Clipboard() // copies to your clipboard
 }
