@@ -21,6 +21,6 @@ func main() {
 		return
 	}
 
-	print(res.GetImageLink())
-	// res.Clipboard()
+	// print(res.GetImageLink())
+	res.Clipboard()
 }
