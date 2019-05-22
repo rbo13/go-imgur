@@ -22,5 +22,6 @@ func main() {
 	}
 
 	// print(res.GetImageLink())
+	print("Image Link successfully copied to clipboard")
 	res.Clipboard()
 }
