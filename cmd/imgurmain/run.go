@@ -25,6 +25,7 @@ func Run() {
 		panic(err)
 	}
 
-	print(res.GetImageLink())
-	// res.Clipboard() // copies to your clipboard
+	// print(res.GetImageLink())
+	res.Clipboard()
+	print("Link has been copied to clipboard")
 }
