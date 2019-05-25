@@ -22,10 +22,12 @@ func Run() {
 	imgr := imgur.New(imgurClientID)
 	res, err := imgr.Upload(fileName)
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		return
 	}
 
-	// print(res.GetImageLink())
+	println(res.GetImageLink())
+	println(res.GetImageID())
 	res.Clipboard()
 	print("Link has been copied to clipboard")
 }

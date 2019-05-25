@@ -30,6 +30,11 @@ type ImageData struct {
 	Width      int    `json:"width"`
 }
 
+// GetImageID returns the uploaded image ID.
+func (res *Response) GetImageID() string {
+	return res.Data.ID
+}
+
 // GetImageLink returns the url of the uploaded image from imgur.
 func (res *Response) GetImageLink() string {
 	return res.Data.Link
