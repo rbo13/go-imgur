@@ -37,7 +37,7 @@ func (res *Response) GetImageID() string {
 
 // GetDeleteHash returns the delete hash if you want to delete the image from imgur.
 func (res *Response) GetDeleteHash() string {
-	return res.Data.Deletehash
+	return "http://imgur.com/delete/" + res.Data.Deletehash
 }
 
 // GetImageLink returns the url of the uploaded image from imgur.
