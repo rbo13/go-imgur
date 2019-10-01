@@ -26,9 +26,6 @@ func Run() {
 		return
 	}
 
-	println(res.GetImageLink())
-	println(res.GetImageID())
-	println(res.GetDeleteHash())
 	res.Clipboard()
 	print("Link has been copied to clipboard")
 }
