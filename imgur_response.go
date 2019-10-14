@@ -30,6 +30,11 @@ type ImageData struct {
 	Width      int    `json:"width"`
 }
 
+// GetAccountID returns the account ID of the uploader.
+func (res *Response) GetAccountID() int {
+	return res.Data.AccountID
+}
+
 // GetImageID returns the uploaded image ID.
 func (res *Response) GetImageID() string {
 	return res.Data.ID
